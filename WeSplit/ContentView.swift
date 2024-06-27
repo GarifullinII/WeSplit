@@ -32,6 +32,14 @@ struct ContentView: View {
     
     let tipPercentages = [10, 15, 20, 25, 0]
     
+    func colorForTotalAmount() -> Bool {
+        if tipPercentage == 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -76,6 +84,7 @@ struct ContentView: View {
                     Text(totalAmount,
                          format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                 }
+                .foregroundColor(colorForTotalAmount() ? .red : .black)
             }
             .navigationTitle("WeSplit")
             .toolbar {
